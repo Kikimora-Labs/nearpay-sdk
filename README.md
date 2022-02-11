@@ -1,0 +1,1 @@
+SDK to conveniently communicate with NearPay widget
