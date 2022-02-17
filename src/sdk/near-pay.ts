@@ -9,18 +9,30 @@ const DEFAULTS = {
   IFRAME_ID: 'near-pay-iframe',
 };
 
+/**
+ * `mountElement`: HTMLElement — inside which iframe will appear
+ *
+ * `environment`: string — `development` or `production`, `production` is used by default
+ *
+ * `params`: SignedWidgetParams — optional, if you have merchant `apiKey`
+ *
+ * `iframeClass`: string - optional `NearPay__iframe` by defauly. You may pass custom class, it will override default one.
+ *
+ * `iframeId`: string - same as `iframeClass` but for #id attribute
+ *
+ */
 type NearPayParams = {
   mountElement: HTMLElement;
-  environment: EnvironmentMode;
-  params: SignedWidgetParams | {};
-  iframeClass: string;
-  iframeId: string;
+  environment?: EnvironmentMode;
+  params?: SignedWidgetParams;
+  iframeClass?: string;
+  iframeId?: string;
 };
 
 export class NearPay {
   iframe: HTMLIFrameElement | null = null;
   mountElement: HTMLElement;
-  _params: SignedWidgetParams | {};
+  _params: SignedWidgetParams | null;
   _env: EnvironmentMode;
   _initialized = false;
   _iframeClass: string;
@@ -28,10 +40,10 @@ export class NearPay {
 
   constructor({
     mountElement,
-    environment,
+    environment = 'production',
     iframeClass = DEFAULTS.IFRAME_CLASS,
     iframeId = DEFAULTS.IFRAME_ID,
-    params = {},
+    params,
   }: NearPayParams) {
     if (!mountElement) {
       throw ERROR_NO_MOUNT_ELEMENT;
@@ -40,11 +52,15 @@ export class NearPay {
     this._iframeId = iframeId;
     this.mountElement = mountElement;
     this._env = environment;
-    this._params = params;
+    this._params = params || null;
   }
 
   get link() {
-    return `${getWidgetUrl(this._env)}?${makeParamsQuery(this._params)}`;
+    if (!this._params) {
+      return getWidgetUrl(this._env);
+    } else {
+      return `${getWidgetUrl(this._env)}?${makeParamsQuery(this._params)}`;
+    }
   }
 
   createIframe() {
