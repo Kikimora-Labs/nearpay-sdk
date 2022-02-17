@@ -10,13 +10,13 @@ const removeUndefined = (object) => {
     });
     return copy;
 };
-const makeParamsQuery = ({ apiKey, toWallet, toCurrency, signature, orderId, }) => {
+const makeParamsQuery = ({ apiKey, toWallet, toCurrency, signature, merchantOrderId, }) => {
     const params = new URLSearchParams(removeUndefined({
         toWallet,
         toCurrency,
-        apiKey: apiKey,
-        signature: signature,
-        orderId: orderId,
+        apiKey,
+        signature,
+        merchantOrderId,
     })).toString();
     return `${params}`;
 };

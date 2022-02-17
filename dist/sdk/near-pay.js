@@ -2,13 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NearPay = void 0;
 const helpers_1 = require("../helpers");
-const ERROR_NO_MOUNT_ELEMENT = new Error('You should provide mount element');
+const ERROR_NO_MOUNT_ELEMENT = new Error('[NearPay]: provide mount element');
 const DEFAULTS = {
     IFRAME_CLASS: 'NearPay__iframe',
     IFRAME_ID: 'near-pay-iframe',
 };
 class NearPay {
-    constructor({ mountElement, environment, iframeClass = DEFAULTS.IFRAME_CLASS, iframeId = DEFAULTS.IFRAME_ID, params = {}, }) {
+    constructor({ mountElement, environment = 'production', iframeClass = DEFAULTS.IFRAME_CLASS, iframeId = DEFAULTS.IFRAME_ID, params, }) {
         this.iframe = null;
         this._initialized = false;
         if (!mountElement) {
@@ -18,10 +18,15 @@ class NearPay {
         this._iframeId = iframeId;
         this.mountElement = mountElement;
         this._env = environment;
-        this._params = params;
+        this._params = params || null;
     }
     get link() {
-        return `${(0, helpers_1.getWidgetUrl)(this._env)}?${(0, helpers_1.makeParamsQuery)(this._params)}`;
+        if (!this._params) {
+            return (0, helpers_1.getWidgetUrl)(this._env);
+        }
+        else {
+            return `${(0, helpers_1.getWidgetUrl)(this._env)}?${(0, helpers_1.makeParamsQuery)(this._params)}`;
+        }
     }
     createIframe() {
         const iframe = document.createElement('iframe');
