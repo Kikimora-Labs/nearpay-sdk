@@ -1,0 +1,8 @@
+.NearMoney__iframe {
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  min-height: 548px + 64px;
+  width: 100% !important;
+  height: 100% !important;
+}

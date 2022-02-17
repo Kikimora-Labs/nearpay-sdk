@@ -2,8 +2,8 @@
   "dependencies": {
     "typescript": "^4.5.5"
   },
-  "name": "nearpay-sdk",
-  "version": "0.0.1",
+  "name": "@nearpay/nearpay-sdk",
+  "version": "0.1.1",
   "description": "SDK to conveniently communicate with NearPay widget",
   "main": "dist/index.js",
   "devDependencies": {},
