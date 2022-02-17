@@ -17,15 +17,15 @@ export const makeParamsQuery = ({
   toWallet,
   toCurrency,
   signature,
-  orderId,
+  merchantOrderId,
 }: Partial<SignedWidgetParams>) => {
   const params = new URLSearchParams(
     removeUndefined({
       toWallet,
       toCurrency,
-      apiKey: apiKey,
-      signature: signature,
-      orderId: orderId,
+      apiKey,
+      signature,
+      merchantOrderId,
     }),
   ).toString();
 
