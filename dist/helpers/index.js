@@ -1,30 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getWidgetUrl = exports.makeParamsQuery = void 0;
-const removeUndefined = (object) => {
-    const copy = {};
-    Object.keys(object).forEach((key) => {
-        if (object[key] !== undefined) {
-            copy[key] = object[key];
-        }
-    });
-    return copy;
-};
-const makeParamsQuery = ({ apiKey, toWallet, toCurrency, toAmount, signature, merchantOrderId, }) => {
-    const params = new URLSearchParams(removeUndefined({
-        toWallet,
-        toCurrency,
-        toAmount,
-        merchantOrderId,
-        apiKey,
-        signature,
-    })).toString();
-    return `${params}`;
-};
-exports.makeParamsQuery = makeParamsQuery;
-const getWidgetUrl = (environment) => {
-    return environment === 'development'
-        ? 'https://dev-widget.nearpay.co'
-        : 'https://widget.nearpay.co';
-};
-exports.getWidgetUrl = getWidgetUrl;
+exports.isNearpayEvent = exports.makeSignatureString = exports.makeParamsQuery = exports.getWidgetUrl = void 0;
+var getWidgetUrl_1 = require("./getWidgetUrl");
+Object.defineProperty(exports, "getWidgetUrl", { enumerable: true, get: function () { return getWidgetUrl_1.getWidgetUrl; } });
+var makeParamsQuery_1 = require("./makeParamsQuery");
+Object.defineProperty(exports, "makeParamsQuery", { enumerable: true, get: function () { return makeParamsQuery_1.makeParamsQuery; } });
+var makeSignatureString_1 = require("./makeSignatureString");
+Object.defineProperty(exports, "makeSignatureString", { enumerable: true, get: function () { return makeSignatureString_1.makeSignatureString; } });
+var isNearpayEvent_1 = require("./isNearpayEvent");
+Object.defineProperty(exports, "isNearpayEvent", { enumerable: true, get: function () { return isNearpayEvent_1.isNearpayEvent; } });
