@@ -16,6 +16,7 @@ export const makeParamsQuery = ({
   apiKey,
   toWallet,
   toCurrency,
+  toAmount,
   signature,
   merchantOrderId,
 }: Partial<SignedWidgetParams>) => {
@@ -23,9 +24,10 @@ export const makeParamsQuery = ({
     removeUndefined({
       toWallet,
       toCurrency,
+      toAmount,
+      merchantOrderId,
       apiKey,
       signature,
-      merchantOrderId,
     }),
   ).toString();
 
