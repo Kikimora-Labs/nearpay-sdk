@@ -1,10 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isNearpayEvent = exports.makeSignatureString = exports.makeParamsQuery = exports.getWidgetUrl = void 0;
+exports.isNearpayEvent = exports.makeSignatureString = exports.getWidgetUrl = void 0;
 var getWidgetUrl_1 = require("./getWidgetUrl");
 Object.defineProperty(exports, "getWidgetUrl", { enumerable: true, get: function () { return getWidgetUrl_1.getWidgetUrl; } });
-var makeParamsQuery_1 = require("./makeParamsQuery");
-Object.defineProperty(exports, "makeParamsQuery", { enumerable: true, get: function () { return makeParamsQuery_1.makeParamsQuery; } });
 var makeSignatureString_1 = require("./makeSignatureString");
 Object.defineProperty(exports, "makeSignatureString", { enumerable: true, get: function () { return makeSignatureString_1.makeSignatureString; } });
 var isNearpayEvent_1 = require("./isNearpayEvent");

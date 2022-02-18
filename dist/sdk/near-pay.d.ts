@@ -28,7 +28,6 @@ export declare class NearPay {
     _iframeClass: string;
     _iframeId: string;
     constructor({ mountElement, environment, iframeClass, iframeId, params, }: NearPayParams);
-    get link(): string;
     createIframe(): HTMLIFrameElement;
     init(): void;
 }

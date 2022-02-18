@@ -20,19 +20,11 @@ class NearPay {
         this._env = environment;
         this._params = params || null;
     }
-    get link() {
-        if (!this._params) {
-            return (0, helpers_1.getWidgetUrl)(this._env);
-        }
-        else {
-            return `${(0, helpers_1.getWidgetUrl)(this._env)}?${(0, helpers_1.makeParamsQuery)(this._params)}`;
-        }
-    }
     createIframe() {
         const iframe = document.createElement('iframe');
         iframe.classList.add(this._iframeClass);
         iframe.id = this._iframeId;
-        iframe.src = this.link;
+        iframe.src = (0, helpers_1.getWidgetUrl)(this._env, this._params || undefined);
         return iframe;
     }
     init() {
