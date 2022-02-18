@@ -1,4 +1,4 @@
-import {getWidgetUrl, makeParamsQuery} from '../helpers';
+import {getWidgetUrl} from '../helpers';
 import {SignedWidgetParams} from '../interfaces/widget-parameters';
 import {EnvironmentMode} from '../interfaces/environment';
 
@@ -55,19 +55,11 @@ export class NearPay {
     this._params = params || null;
   }
 
-  get link() {
-    if (!this._params) {
-      return getWidgetUrl(this._env);
-    } else {
-      return `${getWidgetUrl(this._env)}?${makeParamsQuery(this._params)}`;
-    }
-  }
-
   createIframe() {
     const iframe = document.createElement('iframe');
     iframe.classList.add(this._iframeClass);
     iframe.id = this._iframeId;
-    iframe.src = this.link;
+    iframe.src = getWidgetUrl(this._env, this._params || undefined);
     return iframe;
   }
 
