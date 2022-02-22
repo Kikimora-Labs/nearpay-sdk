@@ -50,10 +50,10 @@ widget.init();
 
 ## NearPay Events
 
-NearPay widget notifies parent window (your website), via window.postMessage interface.
+NearPay widget notifies parent window (your website), via `window.postMessage` interface.
 
 ### Example of sent event:
-```json
+```js
 {
 	source: "nearpay_widget",
 	data: {
