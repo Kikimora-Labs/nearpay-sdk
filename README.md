@@ -25,7 +25,7 @@ npm install @nearpay/nearpay-sdk
 ## Quick Start
  
 ```ts
-import { NearPay, SignedWidgetParams } from '@nearpay/nearpay-sdk;
+import { NearPay, SignedWidgetParams } from '@nearpay/nearpay-sdk';
 
 // more info about params available at SignedWidgetParams definition
 const params: SignedWidgetParams = {
@@ -55,10 +55,10 @@ NearPay widget notifies parent window (your website), via window.postMessage int
 ### Example of sent event:
 ```json
 {
-	source: 'nearpay_widget',
+	source: "nearpay_widget",
 	data: {
-		type: 'onload',
-		payload: ''
+		type: "onload",
+		payload: { width: 480, height: 612 }
 	},
 }
 ```
