@@ -14,13 +14,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/near-money/nearpay-widget-sdk.git"
+    "url": "git+https://github.com/Kikimora-Labs/nearpay-sdk.git"
   },
   "keywords": ["nearpay", "sdk", "typescript", "iframe"],
   "author": "goshancode@gmail.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/near-money/nearpay-widget-sdk/issues"
+    "url": "https://github.com/Kikimora-Labs/nearpay-sdk/issues"
   },
-  "homepage": "https://gitlab.com/near-money/nearpay-widget-sdk#readme"
+  "homepage": "https://github.com/Kikimora-Labs/nearpay-sdk#readme"
 }
