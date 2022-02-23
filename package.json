@@ -1,12 +1,12 @@
 {
-  "dependencies": {
-    "typescript": "^4.5.5"
-  },
-  "name": "nearpay-sdk",
-  "version": "0.0.1",
+  "dependencies": {},
+  "name": "@nearpay/nearpay-sdk",
+  "version": "2.0.9",
   "description": "SDK to conveniently communicate with NearPay widget",
   "main": "dist/index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
@@ -16,7 +16,12 @@
     "type": "git",
     "url": "git+https://github.com/Kikimora-Labs/nearpay-sdk.git"
   },
-  "keywords": ["nearpay", "sdk", "typescript", "iframe"],
+  "keywords": [
+    "nearpay",
+    "sdk",
+    "typescript",
+    "iframe"
+  ],
   "author": "goshancode@gmail.com",
   "license": "ISC",
   "bugs": {
