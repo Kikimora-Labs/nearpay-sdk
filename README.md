@@ -67,12 +67,10 @@ NearPay widget notifies parent window (your website), via `window.postMessage` i
 There is  `isNearpayEvent` helper function for catching NearPay events
 
 ```ts
-import { isNearpayEvent } from '@nearpay/nearpay-sdk';
+import { onNearpayEvent } from '@nearpay/nearpay-sdk';
 
-window.addEventListener('message', (event) => {
-  if (isNearpayEvent(event)) {
-    // react to changes!
-  }
+onNearpayEvent('onload', (data) => {
+  // react to changes!
 })
 ```
 

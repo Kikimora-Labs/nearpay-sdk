@@ -102,3 +102,16 @@ export interface OnOperationSuccess extends WidgetEvent<OrderPayload> {
 export interface OnOperationFail extends WidgetEvent<OrderPayload> {
   type: 'onoperationfail';
 }
+
+export type NearpayEventMap = {
+  "onload": OnLoadedEvent;
+  "onerror": OnErrorEvent;
+  "onresize": OnResizeEvent;
+  "onexit": OnExitEvent;
+  "onstarted": OnStartedEvent;
+  "onoperationcreated": OnOperationCreated;
+  "onpaymentsent": OnPaymentSent;
+  "onoperationsuccess": OnOperationSuccess;
+  "onoperationfail": OnOperationFail;
+  "onoperationpending": OnOperationPending;
+}
