@@ -21,7 +21,9 @@ if (window) {
   })
 }
 
-export function onNearpayEvent<K extends keyof NearpayEventMap>(type: K, listener: (data: NearpayEventMap[K]) => void) {
+export function onNearpayEvent<K extends keyof NearpayEventMap>(
+    type: K, listener: (data: NearpayEventMap[K]["payload"]
+) => void) {
   if (!listeners[type]) {
     listeners[type] = [];
   }
