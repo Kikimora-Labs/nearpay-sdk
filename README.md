@@ -44,6 +44,11 @@ const widget = new NearPay({
   params
 });
 
+// Subscribing to events
+widget.addListener('onload', (data) => {
+    // react to changes!
+});
+
 // render iframe
 widget.init();
 ```
@@ -61,17 +66,6 @@ NearPay widget notifies parent window (your website), via `window.postMessage` i
 		payload: { width: 480, height: 612 }
 	},
 }
-```
-
-### Subscribing to events
-There is  `isNearpayEvent` helper function for catching NearPay events
-
-```ts
-import { onNearpayEvent } from '@nearpay/nearpay-sdk';
-
-onNearpayEvent('onload', (data) => {
-  // react to changes!
-})
 ```
 
 ### Available Events
