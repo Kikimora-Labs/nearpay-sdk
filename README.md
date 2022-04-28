@@ -39,7 +39,7 @@ const params: SignedWidgetParams = {
 const body = document.querySelector('body');
 
 const widget = new NearPay({
-  mountElement: body
+  mountElement: body,
   environment: 'development',
   params
 });
@@ -60,9 +60,9 @@ NearPay widget notifies parent window (your website), via `window.postMessage` i
 ### Example of sent event:
 ```js
 {
-	source: "nearpay_widget",
+	source: 'nearpay_widget',
 	data: {
-		type: "onload",
+		type: 'onload',
 		payload: { width: 480, height: 612 }
 	},
 }
@@ -85,7 +85,7 @@ import {
   OnOperationPending,
   OnOperationSuccess,
   OnOperationFail  
-} from '@nearpay/nearpay-sd';,
+} from '@nearpay/nearpay-sdk';,
 ```
 
 ## 📖 Integration Docs
