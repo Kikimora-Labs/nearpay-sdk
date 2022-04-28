@@ -1,5 +1,6 @@
 import { SignedWidgetParams } from '../interfaces/widget-parameters';
 import { EnvironmentMode } from '../interfaces/environment';
+import { NearpayEventMap } from '..';
 /**
  * `mountElement`: HTMLElement — inside which iframe will appear
  *
@@ -22,13 +23,17 @@ declare type NearPayParams = {
 export declare class NearPay {
     iframe: HTMLIFrameElement | null;
     mountElement: HTMLElement;
-    _params: SignedWidgetParams | null;
-    _env: EnvironmentMode;
-    _initialized: boolean;
-    _iframeClass: string;
-    _iframeId: string;
-    constructor({ mountElement, environment, iframeClass, iframeId, params, }: NearPayParams);
-    createIframe(): HTMLIFrameElement;
+    private _listeners;
+    private _params;
+    private _env;
+    private _initialized;
+    private _iframeClass;
+    private _iframeId;
+    constructor({ mountElement, environment, params, }: NearPayParams);
+    private startWindowHandling;
+    private createIframe;
     init(): void;
+    addListener<K extends keyof NearpayEventMap>(type: K, listener: (data: NearpayEventMap[K]['payload']) => void): void;
+    removeListener<K extends keyof NearpayEventMap>(type: K, listener: (data: NearpayEventMap[K]['payload']) => void): void;
 }
 export {};

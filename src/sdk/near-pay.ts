@@ -1,6 +1,8 @@
-import {getWidgetUrl} from '../helpers';
+import {getWidgetUrl, isNearpayEvent} from '../helpers';
 import {SignedWidgetParams} from '../interfaces/widget-parameters';
 import {EnvironmentMode} from '../interfaces/environment';
+import {getWindow} from '../helpers/global';
+import {NearpayEventMap, WidgetEvent} from '..';
 
 const ERROR_NO_MOUNT_ELEMENT = new Error('[NearPay]: provide mount element');
 
@@ -29,33 +31,65 @@ type NearPayParams = {
   iframeId?: string;
 };
 
+const stylesheetContent = `
+.NearPay__iframe {
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  min-height: 612px;
+  width: 100% !important;
+  height: 100% !important;
+}
+`;
+const stylesheet = document.createElement('style');
+stylesheet.innerHTML = stylesheetContent;
+
 export class NearPay {
-  iframe: HTMLIFrameElement | null = null;
-  mountElement: HTMLElement;
-  _params: SignedWidgetParams | null;
-  _env: EnvironmentMode;
-  _initialized = false;
-  _iframeClass: string;
-  _iframeId: string;
+  public iframe: HTMLIFrameElement | null = null;
+  public mountElement: HTMLElement;
+  private _listeners: {[key: string]: Set<(data: any) => void>};
+  private _params: SignedWidgetParams | null;
+  private _env: EnvironmentMode;
+  private _initialized = false;
+  private _iframeClass: string;
+  private _iframeId: string;
 
   constructor({
     mountElement,
     environment = 'production',
-    iframeClass = DEFAULTS.IFRAME_CLASS,
-    iframeId = DEFAULTS.IFRAME_ID,
     params,
   }: NearPayParams) {
     if (!mountElement) {
       throw ERROR_NO_MOUNT_ELEMENT;
     }
-    this._iframeClass = iframeClass;
-    this._iframeId = iframeId;
+    this._iframeClass = DEFAULTS.IFRAME_CLASS;
+    this._iframeId = DEFAULTS.IFRAME_ID;
     this.mountElement = mountElement;
     this._env = environment;
     this._params = params || null;
+    this._listeners = {};
   }
 
-  createIframe() {
+  private startWindowHandling() {
+    const window = getWindow();
+    if (window) {
+      window.addEventListener(
+        'message',
+        (event: MessageEvent<{data: WidgetEvent}>) => {
+          if (isNearpayEvent(event)) {
+            const callbacks = this._listeners[event.data.data.type];
+            if (callbacks) {
+              Array.from(callbacks).forEach((cb) =>
+                cb(event.data.data.payload),
+              );
+            }
+          }
+        },
+      );
+    }
+  }
+
+  private createIframe() {
     const iframe = document.createElement('iframe');
     iframe.classList.add(this._iframeClass);
     iframe.id = this._iframeId;
@@ -63,13 +97,43 @@ export class NearPay {
     return iframe;
   }
 
-  init() {
+  public init() {
     if (this._initialized) return;
 
+    this.startWindowHandling();
     const iframe = this.createIframe();
 
-    this.mountElement.appendChild(iframe);
+    let mountElement: HTMLElement | ShadowRoot = this.mountElement;
+    if (this.mountElement.attachShadow) {
+      const shadowRoot = this.mountElement.attachShadow({mode: 'open'});
+      shadowRoot.append(stylesheet);
+      mountElement = shadowRoot;
+    }
+
+    mountElement.appendChild(iframe);
     this.iframe = iframe;
     this._initialized = true;
+  }
+
+  public addListener<K extends keyof NearpayEventMap>(
+    type: K,
+    listener: (data: NearpayEventMap[K]['payload']) => void,
+  ): void {
+    if (!this._listeners[type]) {
+      this._listeners[type] = new Set();
+    }
+
+    this._listeners[type].add(listener);
+  }
+
+  public removeListener<K extends keyof NearpayEventMap>(
+    type: K,
+    listener: (data: NearpayEventMap[K]['payload']) => void,
+  ): void {
+    if (!this._listeners[type]) {
+      return;
+    }
+
+    this._listeners[type].delete(listener);
   }
 }
