@@ -29,11 +29,11 @@ export declare class NearPay {
     private _initialized;
     private _iframeClass;
     private _iframeId;
-    constructor({ mountElement, environment, iframeClass, iframeId, params, }: NearPayParams);
+    constructor({ mountElement, environment, params, }: NearPayParams);
     private startWindowHandling;
     private createIframe;
     init(): void;
-    addListener<K extends keyof NearpayEventMap>(type: K, listener: (data: NearpayEventMap[K]["payload"]) => void): void;
-    removeListener<K extends keyof NearpayEventMap>(type: K, listener: (data: NearpayEventMap[K]["payload"]) => void): void;
+    addListener<K extends keyof NearpayEventMap>(type: K, listener: (data: NearpayEventMap[K]['payload']) => void): void;
+    removeListener<K extends keyof NearpayEventMap>(type: K, listener: (data: NearpayEventMap[K]['payload']) => void): void;
 }
 export {};

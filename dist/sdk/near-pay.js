@@ -8,15 +8,27 @@ const DEFAULTS = {
     IFRAME_CLASS: 'NearPay__iframe',
     IFRAME_ID: 'near-pay-iframe',
 };
+const stylesheetContent = `
+.NearPay__iframe {
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  min-height: 612px;
+  width: 100% !important;
+  height: 100% !important;
+}
+`;
+const stylesheet = document.createElement('style');
+stylesheet.innerHTML = stylesheetContent;
 class NearPay {
-    constructor({ mountElement, environment = 'production', iframeClass = DEFAULTS.IFRAME_CLASS, iframeId = DEFAULTS.IFRAME_ID, params, }) {
+    constructor({ mountElement, environment = 'production', params, }) {
         this.iframe = null;
         this._initialized = false;
         if (!mountElement) {
             throw ERROR_NO_MOUNT_ELEMENT;
         }
-        this._iframeClass = iframeClass;
-        this._iframeId = iframeId;
+        this._iframeClass = DEFAULTS.IFRAME_CLASS;
+        this._iframeId = DEFAULTS.IFRAME_ID;
         this.mountElement = mountElement;
         this._env = environment;
         this._params = params || null;
@@ -29,7 +41,7 @@ class NearPay {
                 if ((0, helpers_1.isNearpayEvent)(event)) {
                     const callbacks = this._listeners[event.data.data.type];
                     if (callbacks) {
-                        Array.from(callbacks).forEach(cb => cb(event.data.data.payload));
+                        Array.from(callbacks).forEach((cb) => cb(event.data.data.payload));
                     }
                 }
             });
@@ -47,7 +59,13 @@ class NearPay {
             return;
         this.startWindowHandling();
         const iframe = this.createIframe();
-        this.mountElement.appendChild(iframe);
+        let mountElement = this.mountElement;
+        if (this.mountElement.attachShadow) {
+            const shadowRoot = this.mountElement.attachShadow({ mode: 'open' });
+            shadowRoot.append(stylesheet);
+            mountElement = shadowRoot;
+        }
+        mountElement.appendChild(iframe);
         this.iframe = iframe;
         this._initialized = true;
     }
