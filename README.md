@@ -31,7 +31,7 @@ import { NearPay, SignedWidgetParams } from '@nearpay/nearpay-sdk';
 const params: SignedWidgetParams = {
   toAmount: '',
   toCurrency: '',
-  toAddress: '',
+  toWallet: '',
   signature: '',
   apiKey: 'your-public-api-key',
 };
