@@ -35,6 +35,19 @@ const makeParamsQuery = ({
   return `${params}`;
 };
 
+const getOrigin = (environment: EnvironmentMode) => {
+  switch (environment) {
+    case 'production':
+      return 'https://widget.nearpay.co';
+    case 'development':
+      return 'https://dev-widget.nearpay.co';
+    case 'stage':
+      return 'https://stage-widget.nearpay.co';
+    default:
+      throw new Error('Environment mode is not defined');
+  }
+};
+
 /**
  *
  * @param environment switch between production/development versions of widget
@@ -45,10 +58,7 @@ export const getWidgetUrl = (
   environment: EnvironmentMode,
   params?: SignedWidgetParams,
 ) => {
-  const origin =
-    environment === 'development'
-      ? 'https://dev-widget.nearpay.co'
-      : 'https://widget.nearpay.co';
+  const origin = getOrigin(environment);
 
   if (!params) {
     return origin;
