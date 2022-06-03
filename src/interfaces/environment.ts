@@ -1,1 +1,1 @@
-export type EnvironmentMode = 'development' | 'production';
+export type EnvironmentMode = 'development' | 'production' | 'stage';
