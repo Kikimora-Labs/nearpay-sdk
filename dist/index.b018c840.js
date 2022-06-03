@@ -724,8 +724,20 @@ const makeParamsQuery = ({ apiKey , toWallet , toCurrency , toAmount , signature
     })).toString();
     return `${params}`;
 };
+const getOrigin = (environment)=>{
+    switch(environment){
+        case 'production':
+            return 'https://widget.nearpay.co';
+        case 'development':
+            return 'https://dev-widget.nearpay.co';
+        case 'stage':
+            return 'https://stage-widget.nearpay.co';
+        default:
+            throw new Error('Environment mode is not defined');
+    }
+};
 const getWidgetUrl = (environment, params)=>{
-    const origin = environment === 'development' ? 'https://dev-widget.nearpay.co' : 'https://widget.nearpay.co';
+    const origin = getOrigin(environment);
     if (!params) return origin;
     else return `${origin}?${makeParamsQuery(params)}`;
 };

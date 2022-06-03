@@ -6,7 +6,6 @@ Using this SDK is not necessary, although it will simplify your expirience and t
 
 It's written with TypeScript, with all the typings defined out of the box.
 
-
 ## Installation
 
 You can find the package here - https://www.npmjs.com/package/@nearpay/nearpay-sdk.
@@ -18,14 +17,15 @@ yarn add @nearpay/nearpay-sdk
 ```
 
 Install via npm:
+
 ```shell
 npm install @nearpay/nearpay-sdk
 ```
 
 ## Quick Start
- 
+
 ```ts
-import { NearPay, SignedWidgetParams } from '@nearpay/nearpay-sdk';
+import {NearPay, SignedWidgetParams} from '@nearpay/nearpay-sdk';
 
 // more info about params available at SignedWidgetParams definition
 const params: SignedWidgetParams = {
@@ -41,12 +41,12 @@ const body = document.querySelector('body');
 const widget = new NearPay({
   mountElement: body,
   environment: 'development',
-  params
+  params,
 });
 
 // Subscribing to events
 widget.addListener('onload', (data) => {
-    // react to changes!
+  // react to changes!
 });
 
 // render iframe
@@ -58,6 +58,7 @@ widget.init();
 NearPay widget notifies parent window (your website), via `window.postMessage` interface.
 
 ### Example of sent event:
+
 ```js
 {
 	source: 'nearpay_widget',
@@ -69,12 +70,13 @@ NearPay widget notifies parent window (your website), via `window.postMessage` i
 ```
 
 ### Available Events
+
 All the typings for events and their `payload` are defined and exported from `@nearpay/nearpay-sdk`
 
 ```ts
 // EventType is a union type that consist of every event type available
-import { 
-  EventType, 
+import {
+  EventType,
   OnLoadedEvent,
   OnErrorEvent,
   OnResizeEvent,
@@ -84,11 +86,10 @@ import {
   OnPaymentSent,
   OnOperationPending,
   OnOperationSuccess,
-  OnOperationFail  
+  OnOperationFail
 } from '@nearpay/nearpay-sdk';,
 ```
 
 ## 📖 Integration Docs
-Look for more info about integrating NearPay into your products [here](https://kikimora-labs.notion.site/NearPay-Widget-Documentation-for-Merchants-fbf29ddaf92d4ea190ad92aef4d90474)
 
-
+Look for more info about integrating NearPay into your products [here](http://docs.nearpay.co)
