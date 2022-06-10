@@ -40,7 +40,7 @@ const body = document.querySelector('body');
 
 const widget = new NearPay({
   mountElement: body,
-  environment: 'development',
+  environment: 'stage', // or production
   params,
 });
 
