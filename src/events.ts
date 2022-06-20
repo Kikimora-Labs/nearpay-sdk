@@ -43,7 +43,7 @@ export interface ForceContinuePayload {
   unsupported: string;
 }
 
-export type EventPayload = ResizePayload | ErrorPayload | OrderPayload | null;
+export type EventPayload = ResizePayload | ErrorPayload | OrderPayload | UnsupportedPayload | ForceContinuePayload | null;
 
 /**
  *  onloaded - Widget succesfully initalized, and ready to be interacted with
