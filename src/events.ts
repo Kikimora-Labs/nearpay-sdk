@@ -1,20 +1,20 @@
 export enum EventType {
-  onload = 'onload',
-  onerror = 'onerror',
-  onresize = 'onresize',
-  onexit = 'onexit',
-  onstarted = 'onstarted',
-  onoperationcreated = 'onoperationcreated',
-  onpaymentsent = 'onpaymentsent',
-  onoperationsuccess = 'onoperationsuccess',
-  onoperationfail = 'onoperationfail',
-  onoperationpending = 'onoperationpending',
-  onunsupported = 'onunsupported',
-  onforcecontinue = 'onforcecontinue'
+  Onload = 'onload',
+  Onerror = 'onerror',
+  Onresize = 'onresize',
+  Onexit = 'onexit',
+  Onstarted = 'onstarted',
+  Onoperationcreated = 'onoperationcreated',
+  Onpaymentsent = 'onpaymentsent',
+  Onoperationsuccess = 'onoperationsuccess',
+  Onoperationfail = 'onoperationfail',
+  Onoperationpending = 'onoperationpending',
+  Onunsupported = 'onunsupported',
+  Onforcecontinue = 'onforcecontinue'
 }
 
 export interface WidgetEvent<T = EventPayload> {
-  type: EventType | keyof typeof EventType; // second type is for previous version compatability
+  type: EventType; // second type is for previous version compatability
   payload: T;
 }
 
@@ -50,91 +50,91 @@ export type EventPayload = ResizePayload | ErrorPayload | OrderPayload | Unsuppo
  *  onloaded - Widget succesfully initalized, and ready to be interacted with
  */
 export interface OnLoadedEvent extends WidgetEvent<ResizePayload> {
-  type: EventType.onload;
+  type: EventType.Onload;
 }
 
 /**
  *  onerror - An error in the work of the widget, which does not allow the process to continue
  */
 export interface OnErrorEvent extends WidgetEvent<ErrorPayload> {
-  type: EventType.onerror;
+  type: EventType.Onerror;
 }
 
 /**
  *  onresize - Resizing the document inside the iframe widget
  */
 export interface OnResizeEvent extends WidgetEvent<ResizePayload> {
-  type: EventType.onresize;
+  type: EventType.Onresize;
 }
 
 /**
  *  onexit - Close the widget, contains no data
  */
 export interface OnExitEvent extends WidgetEvent<null> {
-  type: EventType.onexit;
+  type: EventType.Onexit;
 }
 
 /**
  *  onstarted - The widget started from the starting point (called at each reset to the beginning)
  */
 export interface OnStartedEvent extends WidgetEvent<null> {
-  type: EventType.onstarted;
+  type: EventType.Onstarted;
 }
 
 /**
  *  onoperationcreated - user had been authenticated and order had been created
  */
 export interface OnOperationCreated extends WidgetEvent<OrderPayload> {
-  type: EventType.onoperationcreated;
+  type: EventType.Onoperationcreated;
 }
 
 /**
  *  onpaymentsent - Sending payment data - the user clicked on Pay, does not contain data
  */
 export interface OnPaymentSent extends WidgetEvent<OrderPayload> {
-  type: EventType.onpaymentsent;
+  type: EventType.Onpaymentsent;
 }
 
 /**
  *  onoperationpending - payment is pending to be confirmed
  */
 export interface OnOperationPending extends WidgetEvent<OrderPayload> {
-  type: EventType.onoperationpending;
+  type: EventType.Onoperationpending;
 }
 
 /**
  *  onoperationsuccess - order completed, payment has been received
  */
 export interface OnOperationSuccess extends WidgetEvent<OrderPayload> {
-  type: EventType.onoperationsuccess;
+  type: EventType.Onoperationsuccess;
 }
 
 /**
  *  onoperationfail - order declined, due to service failure, fraud control, or other
  */
 export interface OnOperationFail extends WidgetEvent<OrderPayload> {
-  type: EventType.onoperationfail;
+  type: EventType.Onoperationfail;
 }
 
 export interface OnUnsupported extends WidgetEvent<UnsupportedPayload> {
-  type: EventType.onunsupported;
+  type: EventType.Onunsupported;
 }
 
 export interface OnForceContinue extends WidgetEvent<UnsupportedPayload> {
-  type: EventType.onforcecontinue;
+  type: EventType.Onforcecontinue;
 }
 
 export type NearpayEventMap = {
-  [EventType.onload]: OnLoadedEvent;
-  [EventType.onerror]: OnErrorEvent;
-  [EventType.onresize]: OnResizeEvent;
-  [EventType.onexit]: OnExitEvent;
-  [EventType.onstarted]: OnStartedEvent;
-  [EventType.onoperationcreated]: OnOperationCreated;
-  [EventType.onpaymentsent]: OnPaymentSent;
-  [EventType.onoperationsuccess]: OnOperationSuccess;
-  [EventType.onoperationfail]: OnOperationFail;
-  [EventType.onoperationpending]: OnOperationPending;
-  [EventType.onunsupported]: OnUnsupported;
-  [EventType.onforcecontinue]: OnForceContinue;
+  [EventType.Onload]: OnLoadedEvent;
+  [EventType.Onerror]: OnErrorEvent;
+  [EventType.Onresize]: OnResizeEvent;
+  [EventType.Onexit]: OnExitEvent;
+  [EventType.Onstarted]: OnStartedEvent;
+  [EventType.Onoperationcreated]: OnOperationCreated;
+  [EventType.Onpaymentsent]: OnPaymentSent;
+  [EventType.Onoperationsuccess]: OnOperationSuccess;
+  [EventType.Onoperationfail]: OnOperationFail;
+  [EventType.Onoperationpending]: OnOperationPending;
+  [EventType.Onunsupported]: OnUnsupported;
+  [EventType.Onforcecontinue]: OnForceContinue;
 }
