@@ -116,10 +116,16 @@ export interface OnOperationFail extends WidgetEvent<OrderPayload> {
   type: EventType.Onoperationfail;
 }
 
+/**
+ *  onunsupported - detected user country is unsupported
+ */
 export interface OnUnsupported extends WidgetEvent<UnsupportedPayload> {
   type: EventType.Onunsupported;
 }
 
+/**
+ *  onforcecontinue - user clicks "Force continue" button and default country (US) is applied
+ */
 export interface OnForceContinue extends WidgetEvent<UnsupportedPayload> {
   type: EventType.Onforcecontinue;
 }
