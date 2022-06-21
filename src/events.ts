@@ -36,14 +36,15 @@ export interface OrderPayload {
 }
 
 export interface UnsupportedPayload {
-  reason: string;
+  country?: {
+    name?: string;
+    isoAlpha2?: string;
+    isoAlpha3?: string;
+    flagUrl?: string;
+  }
 }
 
-export interface ForceContinuePayload {
-  unsupported: string;
-}
-
-export type EventPayload = ResizePayload | ErrorPayload | OrderPayload | UnsupportedPayload | ForceContinuePayload | null;
+export type EventPayload = ResizePayload | ErrorPayload | OrderPayload | UnsupportedPayload | null;
 
 /**
  *  onloaded - Widget succesfully initalized, and ready to be interacted with
@@ -119,7 +120,7 @@ export interface OnUnsupported extends WidgetEvent<UnsupportedPayload> {
   type: EventType.onunsupported;
 }
 
-export interface OnForceContinue extends WidgetEvent<ForceContinuePayload> {
+export interface OnForceContinue extends WidgetEvent<UnsupportedPayload> {
   type: EventType.onforcecontinue;
 }
 
