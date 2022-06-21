@@ -2,7 +2,7 @@ import {getWidgetUrl, isNearpayEvent} from '../helpers';
 import {SignedWidgetParams} from '../interfaces/widget-parameters';
 import {EnvironmentMode} from '../interfaces/environment';
 import {getWindow} from '../helpers/global';
-import {NearpayEventMap, WidgetEvent} from '..';
+import {NearpayEventMap, WidgetMessageEventData} from '..';
 
 const ERROR_NO_MOUNT_ELEMENT = new Error('[NearPay]: provide mount element');
 
@@ -75,7 +75,7 @@ export class NearPay {
     if (window) {
       window.addEventListener(
         'message',
-        (event: MessageEvent<{data: WidgetEvent}>) => {
+        (event: MessageEvent<WidgetMessageEventData>) => {
           if (isNearpayEvent(event)) {
             const callbacks = this._listeners[event.data.data.type];
             if (callbacks) {
