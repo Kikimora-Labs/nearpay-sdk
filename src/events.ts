@@ -13,6 +13,11 @@ export enum EventType {
   Onforcecontinue = 'onforcecontinue'
 }
 
+export interface WidgetMessageEventData {
+  source: 'nearpay_widget';
+  data: WidgetEvent;
+}
+
 export interface WidgetEvent<T = EventPayload> {
   type: EventType; // second type is for previous version compatability
   payload: T;
