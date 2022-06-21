@@ -1,6 +1,6 @@
 {
   "name": "@nearpay/nearpay-sdk",
-  "version": "2.1.2",
+  "version": "2.2.2",
   "description": "SDK to conveniently communicate with NearPay widget",
   "main": "dist/index.js",
   "devDependencies": {
