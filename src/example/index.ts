@@ -1,4 +1,4 @@
-import {NearPay, ResizePayload, OrderPayload} from '../index';
+import {EventType, NearPay, OrderPayload, ResizePayload} from '../index';
 
 const container = document.querySelector(
   '#nearpay-widget-container',
@@ -16,8 +16,8 @@ const onOrderCreated = (data: OrderPayload) => {
   console.log('order created', data);
 };
 
-widget.addListener('onload', listener);
-widget.addListener('onoperationcreated', onOrderCreated);
+widget.addListener(EventType.Onload, listener);
+widget.addListener(EventType.Onoperationcreated, onOrderCreated);
 
 // unsubsribe
 // widget.removeEventListener('onload', listener);
