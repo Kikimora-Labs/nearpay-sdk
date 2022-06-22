@@ -25,7 +25,7 @@ npm install @nearpay/nearpay-sdk
 ## Quick Start
 
 ```ts
-import {NearPay, SignedWidgetParams} from '@nearpay/nearpay-sdk';
+import {NearPay, SignedWidgetParams, EventType, ResizePayload} from '@nearpay/nearpay-sdk';
 
 // more info about params available at SignedWidgetParams definition
 const params: SignedWidgetParams = {
@@ -45,7 +45,7 @@ const widget = new NearPay({
 });
 
 // Subscribing to events
-widget.addListener('onload', (data) => {
+widget.addListener(EventType.Onload, (data: ResizePayload) => {
   // react to changes!
 });
 
@@ -55,17 +55,32 @@ widget.init();
 
 ## NearPay Events
 
-NearPay widget notifies parent window (your website), via `window.postMessage` interface.
+NearPay widget notifies parent window (your website), via `window.postMessage` interface. 
+In listener you get `event` object with browser type of `MessageEvent`. 
+It has property `data`, which contains our `event` object with type `WidgetMessageEventData` and properties `source` and `data`,
+where data is object with type `WidgetEvent`.
 
-### Example of sent event:
+### Type of NearPay event :
 
-```js
+```ts
+interface WidgetMessageEventData {
+  source: 'nearpay_widget';
+  data: WidgetEvent;
+}
+```
+
+### Example of NearPay event:
+
+```
 {
-	source: 'nearpay_widget',
-	data: {
-		type: 'onload',
-		payload: { width: 480, height: 612 }
-	},
+    source: 'nearpay_widget',
+    data: {
+        type: 'onload',
+        payload: {
+            width: 480,
+            height: 612
+        }
+    }
 }
 ```
 
@@ -77,6 +92,8 @@ All the typings for events and their `payload` are defined and exported from `@n
 // EventType is a union type that consist of every event type available
 import {
   EventType,
+  WidgetEvent,
+  WidgetMessageEventData,
   OnLoadedEvent,
   OnErrorEvent,
   OnResizeEvent,
@@ -86,8 +103,10 @@ import {
   OnPaymentSent,
   OnOperationPending,
   OnOperationSuccess,
-  OnOperationFail
-} from '@nearpay/nearpay-sdk';,
+  OnOperationFail,
+  OnUnsupported,
+  OnForceContinue
+} from '@nearpay/nearpay-sdk';
 ```
 
 ## 📖 Integration Docs
