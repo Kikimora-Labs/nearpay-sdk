@@ -2,7 +2,7 @@
 
 `@nearpay/nearpay-sdk` allows you to easily integrate the NearPay widget into your web app and communicate with it.
 
-Using this SDK is not necessary, although it will simplify your expirience and therefore is recommended.
+Using this SDK is not necessary, although it will simplify your experience and therefore is recommended.
 
 It's written with TypeScript, with all the typings defined out of the box.
 
