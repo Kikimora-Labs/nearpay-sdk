@@ -12,8 +12,8 @@ const listener = (data) => {
 const onOrderCreated = (data) => {
     console.log('order created', data);
 };
-widget.addListener('onload', listener);
-widget.addListener('onoperationcreated', onOrderCreated);
+widget.addListener(index_1.EventType.Onload, listener);
+widget.addListener(index_1.EventType.Onoperationcreated, onOrderCreated);
 // unsubsribe
 // widget.removeEventListener('onload', listener);
 widget.init();
