@@ -1,5 +1,8 @@
 import {EnvironmentMode} from '../interfaces/environment';
-import {SignedWidgetParams} from '../interfaces/widget-parameters';
+import {
+  ContractCall,
+  SignedWidgetParams,
+} from '../interfaces/widget-parameters';
 
 const removeUndefined = (object: Record<string, any>) => {
   const copy: Record<string, any> = {};
@@ -13,6 +16,14 @@ const removeUndefined = (object: Record<string, any>) => {
   return copy;
 };
 
+const getContractCallEncoded = (contractCall?: ContractCall) => {
+  if (!contractCall) {
+    return undefined;
+  }
+
+  return encodeURIComponent(JSON.stringify(contractCall));
+};
+
 const makeParamsQuery = ({
   apiKey,
   toWallet,
@@ -20,6 +31,7 @@ const makeParamsQuery = ({
   toAmount,
   signature,
   merchantOrderId,
+  contractCall,
 }: Partial<SignedWidgetParams>) => {
   const params = new URLSearchParams(
     removeUndefined({
@@ -29,6 +41,7 @@ const makeParamsQuery = ({
       merchantOrderId,
       apiKey,
       signature,
+      contractCall: getContractCallEncoded(contractCall),
     }),
   ).toString();
 

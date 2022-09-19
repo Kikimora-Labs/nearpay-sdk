@@ -12,6 +12,8 @@
  * `merchantOrderId` - Custom string, your order identifier to help you track orders.
  *
  * `apiKey` - You merchant public key, NOT A SECRET KEY
+ *
+ * `contractCall` - Data contract method
  */
 export interface WidgetParams {
     toCurrency?: string;
@@ -19,6 +21,7 @@ export interface WidgetParams {
     toWallet?: string;
     merchantOrderId?: string;
     apiKey?: string;
+    contractCall?: ContractCall;
 }
 /**
  * **Check full documentation here**
@@ -39,4 +42,17 @@ export interface WidgetParams {
  */
 export interface SignedWidgetParams extends WidgetParams {
     signature: string;
+}
+/**
+ * **Check full documentation here**
+ *
+ * https://kikimora-labs.notion.site/NearPay-Widget-Documentation-for-Merchants-fbf29ddaf92d4ea190ad92aef4d90474
+ *
+ * `method` - Contract method
+ *
+ * `args` - Arguments for your contract
+ */
+export interface ContractCall {
+    method: string;
+    args?: Record<string, string>;
 }

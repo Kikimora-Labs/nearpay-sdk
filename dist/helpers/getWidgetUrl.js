@@ -10,7 +10,13 @@ const removeUndefined = (object) => {
     });
     return copy;
 };
-const makeParamsQuery = ({ apiKey, toWallet, toCurrency, toAmount, signature, merchantOrderId, }) => {
+const getContractCallEncoded = (contractCall) => {
+    if (!contractCall) {
+        return undefined;
+    }
+    return encodeURIComponent(JSON.stringify(contractCall));
+};
+const makeParamsQuery = ({ apiKey, toWallet, toCurrency, toAmount, signature, merchantOrderId, contractCall, }) => {
     const params = new URLSearchParams(removeUndefined({
         toWallet,
         toCurrency,
@@ -18,6 +24,7 @@ const makeParamsQuery = ({ apiKey, toWallet, toCurrency, toAmount, signature, me
         merchantOrderId,
         apiKey,
         signature,
+        contractCall: getContractCallEncoded(contractCall),
     })).toString();
     return `${params}`;
 };
