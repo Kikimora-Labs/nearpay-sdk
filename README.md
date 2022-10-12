@@ -25,7 +25,12 @@ npm install @nearpay/nearpay-sdk
 ## Quick Start
 
 ```ts
-import {NearPay, SignedWidgetParams, EventType, ResizePayload} from '@nearpay/nearpay-sdk';
+import {
+  NearPay,
+  SignedWidgetParams,
+  EventType,
+  ResizePayload,
+} from '@nearpay/nearpay-sdk';
 
 // more info about params available at SignedWidgetParams definition
 const params: SignedWidgetParams = {
@@ -34,6 +39,10 @@ const params: SignedWidgetParams = {
   toWallet: '',
   signature: '',
   apiKey: 'your-public-api-key',
+  contractCall: {
+    method: '',
+    args: {},
+  },
 };
 
 const body = document.querySelector('body');
@@ -55,8 +64,8 @@ widget.init();
 
 ## NearPay Events
 
-NearPay widget notifies parent window (your website), via `window.postMessage` interface. 
-In listener you get `event` object with browser type of `MessageEvent`. 
+NearPay widget notifies parent window (your website), via `window.postMessage` interface.
+In listener you get `event` object with browser type of `MessageEvent`.
 It has property `data`, which contains our `event` object with type `WidgetMessageEventData` and properties `source` and `data`,
 where data is object with type `WidgetEvent`.
 
@@ -105,7 +114,7 @@ import {
   OnOperationSuccess,
   OnOperationFail,
   OnUnsupported,
-  OnForceContinue
+  OnForceContinue,
 } from '@nearpay/nearpay-sdk';
 ```
 
