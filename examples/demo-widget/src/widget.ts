@@ -1,4 +1,9 @@
-import {EventType, NearPay, OrderPayload, ResizePayload} from '../index';
+import {
+  EventType,
+  NearPay,
+  OrderPayload,
+  ResizePayload,
+} from '@nearpay/nearpay-sdk';
 
 const container = document.querySelector(
   '#nearpay-widget-container',

@@ -1,23 +1,35 @@
 {
-    "name": "@nearpay/nearpay-sdk-monorepo",
-    "version": "0.0.0",
-    "private": true,
-    "description": "Monorepo for SDK NearPay widget",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Kikimora-Labs/nearpay-sdk.git"
-    },
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/Kikimora-Labs/nearpay-sdk/issues"
-    },
-    "homepage": "https://github.com/Kikimora-Labs/nearpay-sdk#readme",
-    "devDependencies": {
-        "eslint": "^8.25.0",
-        "prettier": "^2.7.1",
-        "typescript": "^4.5.5"
-    }
+  "name": "@nearpay/nearpay-sdk-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Monorepository of SDK NearPay widget",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "pnpm clear:dist && pnpm build:sdk && pnpm -F !@nearpay/nearpay-sdk -r --stream --parallel build",
+    "build:sdk": "pnpm clear:sdk && pnpm -F ./sdk build",
+    "dev": "pnpm -r --stream --parallel dev",
+    "dev:sdk": "pnpm clear:sdk && pnpm -F ./sdk dev",
+    "dev:demo": "pnpm -F demo-widget dev",
+    "clear:sdk": "pnpm del-cli \"./sdk/dist\"",
+    "clear:dist": "pnpm del-cli \"**/dist\"",
+    "clear:node": "pnpm del-cli \"**/node_modules\"",
+    "clear": "pnpm clear:node && pnpm clear:dist",
+    "format": "prettier --write --ignore-unknown **",
+    "sdk:release": "pnpm clear:sdk && pnpm build:sdk && pnpm up -r @nearpay/nearpay-sdk",
+    "sdk:publish": "pnpm publish -F @nearpay/nearpay-sdk --access public --no-git-checks"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kikimora-Labs/nearpay-sdk.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kikimora-Labs/nearpay-sdk/issues"
+  },
+  "homepage": "https://github.com/Kikimora-Labs/nearpay-sdk#readme",
+  "devDependencies": {
+    "eslint": "^8.25.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.4"
+  }
 }

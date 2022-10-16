@@ -10,7 +10,7 @@ export enum EventType {
   Onoperationfail = 'onoperationfail',
   Onoperationpending = 'onoperationpending',
   Onunsupported = 'onunsupported',
-  Onforcecontinue = 'onforcecontinue'
+  Onforcecontinue = 'onforcecontinue',
 }
 
 export interface WidgetMessageEventData {
@@ -46,10 +46,15 @@ export interface UnsupportedPayload {
     isoAlpha2?: string;
     isoAlpha3?: string;
     flagUrl?: string;
-  }
+  };
 }
 
-export type EventPayload = ResizePayload | ErrorPayload | OrderPayload | UnsupportedPayload | null;
+export type EventPayload =
+  | ResizePayload
+  | ErrorPayload
+  | OrderPayload
+  | UnsupportedPayload
+  | null;
 
 /**
  *  onloaded - Widget succesfully initalized, and ready to be interacted with
@@ -148,4 +153,4 @@ export type NearpayEventMap = {
   [EventType.Onoperationpending]: OnOperationPending;
   [EventType.Onunsupported]: OnUnsupported;
   [EventType.Onforcecontinue]: OnForceContinue;
-}
+};

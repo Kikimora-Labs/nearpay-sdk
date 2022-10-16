@@ -1,14 +1,42 @@
 {
   "compilerOptions": {
-    "target": "es2016",                                 
-    "module": "commonjs",                                
-    "esModuleInterop": true,                             
-    "forceConsistentCasingInFileNames": true,            
-    "strict": true,                                      
+    "target": "ES2016",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "strictPropertyInitialization": false,
+    "noUnusedParameters": false,
+    "esModuleInterop": false,
+    "noUnusedLocals": false,
+    "pretty": true,
+    "strict": true,
+    "sourceMap": true,
     "skipLibCheck": true,
-    "outDir": "dist",
-    "declaration": true       
+    "noImplicitAny": true,
+    "noEmitOnError": true,
+    "stripInternal": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    "useDefineForClassFields": true,
+    // "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noEmit": true
+    // "outDir": "dist",
+    // "declaration": true,
+    // "declarationMap": true,
+    // "emitDeclarationOnly": true,
+    // "declarationDir": "dist/types"
   },
   "include": ["src"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "src/**/__tests__/**", "src/**/*.spec.ts"],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }

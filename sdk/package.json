@@ -2,13 +2,19 @@
   "name": "@nearpay/nearpay-sdk",
   "version": "2.4.1",
   "description": "SDK to conveniently communicate with NearPay widget",
-  "main": "dist/index.js",
-  "devDependencies": {},
+  "type": "module",
+  "files": ["dist"],
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "exports": {
+    "require": "./dist/index.umd.js",
+    "default": "./dist/index.es.js"
+  },
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "build:watch": "tsc --watch",
-    "dev": "parcel src/example/index.html"
+    "build": "vite build",
+    "dev": "vite build --watch"
   },
   "repository": {
     "type": "git",
@@ -20,5 +26,9 @@
   "bugs": {
     "url": "https://github.com/Kikimora-Labs/nearpay-sdk/issues"
   },
-  "homepage": "https://github.com/Kikimora-Labs/nearpay-sdk#readme"
+  "homepage": "https://github.com/Kikimora-Labs/nearpay-sdk/sdk#readme",
+  "devDependencies": {
+    "vite": "^3.1.8",
+    "vite-plugin-dts": "^1.6.6"
+  }
 }
