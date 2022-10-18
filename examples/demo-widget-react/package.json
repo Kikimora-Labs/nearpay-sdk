@@ -1,5 +1,5 @@
 {
-  "name": "demo-widget",
+  "name": "demo-widget-react",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,7 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@babel/core": "^7.0.0",
+    "@chakra-ui/icons": "^2.0.11",
+    "@chakra-ui/react": "^2.3.6",
+    "@chakra-ui/system": "^2.3.0",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "@nearpay/nearpay-sdk": "workspace:^2.4.1",
+    "framer-motion": "^6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

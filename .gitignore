@@ -37,6 +37,15 @@ node_modules/
 .yarn/install-state.gz
 .pnp.*
 
+# pnpm
+pnpm-lock.yaml
+
+# npm
+package-lock.json
+
 # IDE
 .idea/
 .vscode/
+
+# vite
+**vite.config.ts.timestamp*
