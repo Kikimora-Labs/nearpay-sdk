@@ -1,27 +1,36 @@
 {
-  "name": "@nearpay/nearpay-sdk",
-  "version": "2.4.1",
-  "description": "SDK to conveniently communicate with NearPay widget",
-  "main": "dist/index.js",
-  "devDependencies": {
-    "parcel": "^2.5.0",
-    "typescript": "^4.5.5"
-  },
+  "name": "@nearpay/nearpay-sdk-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Monorepository of SDK NearPay widget",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "build:watch": "tsc --watch",
-    "dev": "parcel src/example/index.html"
+    "build:sdk": "pnpm clean:sdk && pnpm -F ./sdk build",
+    "build": "pnpm clean:dist && pnpm build:sdk && pnpm -F !@nearpay/nearpay-sdk -r --stream --parallel build",
+    "dev:sdk": "pnpm clean:sdk && pnpm -F ./sdk dev",
+    "dev:solid": "pnpm -F demo-widget-solid dev",
+    "dev:react": "pnpm -F demo-widget-react dev",
+    "dev": "pnpm -r --stream --parallel dev",
+    "clean:sdk": "pnpm del-cli \"./sdk/dist\"",
+    "clean:dist": "pnpm del-cli \"**/dist\"",
+    "clean:node": "pnpm del-cli \"**/node_modules\"",
+    "clean": "pnpm clean:node && pnpm clean:dist",
+    "format": "prettier --write --ignore-unknown **",
+    "sdk:release": "pnpm clean:sdk && pnpm build:sdk && pnpm up -r @nearpay/nearpay-sdk",
+    "sdk:publish": "pnpm publish -F @nearpay/nearpay-sdk --access public --no-git-checks"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Kikimora-Labs/nearpay-sdk.git"
   },
-  "keywords": ["nearpay", "sdk", "typescript", "iframe"],
-  "author": "goshancode@gmail.com",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Kikimora-Labs/nearpay-sdk/issues"
   },
-  "homepage": "https://github.com/Kikimora-Labs/nearpay-sdk#readme"
+  "homepage": "https://github.com/Kikimora-Labs/nearpay-sdk#readme",
+  "devDependencies": {
+    "eslint": "^8.25.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.4"
+  }
 }
