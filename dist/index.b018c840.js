@@ -528,9 +528,10 @@ function hmrAcceptRun(bundle, id) {
 },{}],"laZXI":[function(require,module,exports) {
 var _index = require("../index");
 const container = document.querySelector('#nearpay-widget-container');
+const params = {};
 const widget = new _index.NearPay({
     mountElement: container,
-    environment: 'development'
+    environment: 'stage'
 });
 const listener = (data)=>{
     console.log('onload', data);
@@ -538,8 +539,11 @@ const listener = (data)=>{
 const onOrderCreated = (data)=>{
     console.log('order created', data);
 };
-widget.addListener('onload', listener);
-widget.addListener('onoperationcreated', onOrderCreated);
+widget.addListener(_index.EventType.Onload, listener);
+widget.addListener(_index.EventType.Onoperationcreated, onOrderCreated);
+widget.addListener('*', (data)=>{
+    console.log('all events', data);
+});
 // unsubsribe
 // widget.removeEventListener('onload', listener);
 widget.init();
@@ -565,6 +569,23 @@ var _getWidgetUrl = require("./helpers/getWidgetUrl");
 },{"./events":"1K5ob","./helpers/makeSignatureString":"3JceE","./sdk/near-pay":"9DXHi","./helpers/isNearpayEvent":"aYuHq","./helpers/getWidgetUrl":"1spVz","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1K5ob":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "EventType", ()=>EventType
+);
+let EventType;
+(function(EventType1) {
+    EventType1["Onload"] = 'onload';
+    EventType1["Onerror"] = 'onerror';
+    EventType1["Onresize"] = 'onresize';
+    EventType1["Onexit"] = 'onexit';
+    EventType1["Onstarted"] = 'onstarted';
+    EventType1["Onoperationcreated"] = 'onoperationcreated';
+    EventType1["Onpaymentsent"] = 'onpaymentsent';
+    EventType1["Onoperationsuccess"] = 'onoperationsuccess';
+    EventType1["Onoperationfail"] = 'onoperationfail';
+    EventType1["Onoperationpending"] = 'onoperationpending';
+    EventType1["Onunsupported"] = 'onunsupported';
+    EventType1["Onforcecontinue"] = 'onforcecontinue';
+})(EventType || (EventType = {}));
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
@@ -652,6 +673,8 @@ class NearPay {
                 const callbacks = this._listeners[event.data.data.type];
                 if (callbacks) Array.from(callbacks).forEach((cb)=>cb(event.data.data.payload)
                 );
+                if (this._listeners['*']) Array.from(this._listeners['*']).forEach((cb)=>cb(event.data.data.payload)
+                );
             }
         });
     }
@@ -724,20 +747,8 @@ const makeParamsQuery = ({ apiKey , toWallet , toCurrency , toAmount , signature
     })).toString();
     return `${params}`;
 };
-const getOrigin = (environment)=>{
-    switch(environment){
-        case 'production':
-            return 'https://widget.nearpay.co';
-        case 'development':
-            return 'https://dev-widget.nearpay.co';
-        case 'stage':
-            return 'https://stage-widget.nearpay.co';
-        default:
-            throw new Error('Environment mode is not defined');
-    }
-};
 const getWidgetUrl = (environment, params)=>{
-    const origin = getOrigin(environment);
+    const origin = environment === 'development' ? 'https://dev-widget.nearpay.co' : 'https://widget.nearpay.co';
     if (!params) return origin;
     else return `${origin}?${makeParamsQuery(params)}`;
 };

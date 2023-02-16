@@ -130,4 +130,5 @@ export declare type NearpayEventMap = {
     [EventType.Onoperationpending]: OnOperationPending;
     [EventType.Onunsupported]: OnUnsupported;
     [EventType.Onforcecontinue]: OnForceContinue;
+    '*': WidgetEvent;
 };
