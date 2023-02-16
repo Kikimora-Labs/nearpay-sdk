@@ -2,22 +2,26 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("../index");
 const container = document.querySelector('#nearpay-widget-container');
-const params = {};
 const widget = new index_1.NearPay({
     mountElement: container,
     environment: 'stage',
 });
-const listener = (data) => {
-    console.log('onload', data);
+const listener = (event) => {
+    console.log('onload', event);
 };
-const onOrderCreated = (data) => {
-    console.log('order created', data);
+const onOrderCreated = (event) => {
+    console.log('order created', event);
 };
 widget.addListener(index_1.EventType.Onload, listener);
 widget.addListener(index_1.EventType.Onoperationcreated, onOrderCreated);
-widget.addListener('*', (data) => {
-    console.log('all events', data);
+// You can use inline listener for automatic type inference
+widget.addListener(index_1.EventType.Onoperationsuccess, (event) => {
+    console.log('order success', event.payload.orderId);
 });
+const allEventsListener = (data) => {
+    console.log('all events', data);
+};
+widget.addListener(index_1.EventType.Any, allEventsListener);
 // unsubsribe
 // widget.removeEventListener('onload', listener);
 widget.init();

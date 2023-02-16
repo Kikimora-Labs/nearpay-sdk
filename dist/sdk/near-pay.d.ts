@@ -33,7 +33,7 @@ export declare class NearPay {
     private startWindowHandling;
     private createIframe;
     init(): void;
-    addListener<K extends keyof NearpayEventMap>(type: K, listener: (data: NearpayEventMap[K]['payload']) => void): void;
-    removeListener<K extends EventType>(type: K, listener: (data: NearpayEventMap[K]['payload']) => void): void;
+    addListener<K extends keyof NearpayEventMap>(type: K, listener: (event: NearpayEventMap[K]) => void): void;
+    removeListener<K extends EventType>(type: K, listener: (event: NearpayEventMap[K]) => void): void;
 }
 export {};

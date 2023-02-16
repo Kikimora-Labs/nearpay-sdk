@@ -528,22 +528,26 @@ function hmrAcceptRun(bundle, id) {
 },{}],"laZXI":[function(require,module,exports) {
 var _index = require("../index");
 const container = document.querySelector('#nearpay-widget-container');
-const params = {};
 const widget = new _index.NearPay({
     mountElement: container,
     environment: 'stage'
 });
-const listener = (data)=>{
-    console.log('onload', data);
+const listener = (event)=>{
+    console.log('onload', event);
 };
-const onOrderCreated = (data)=>{
-    console.log('order created', data);
+const onOrderCreated = (event)=>{
+    console.log('order created', event);
 };
 widget.addListener(_index.EventType.Onload, listener);
 widget.addListener(_index.EventType.Onoperationcreated, onOrderCreated);
-widget.addListener('*', (data)=>{
-    console.log('all events', data);
+// You can use inline listener for automatic type inference
+widget.addListener(_index.EventType.Onoperationsuccess, (event)=>{
+    console.log('order success', event.payload.orderId);
 });
+const allEventsListener = (data)=>{
+    console.log('all events', data);
+};
+widget.addListener(_index.EventType.Any, allEventsListener);
 // unsubsribe
 // widget.removeEventListener('onload', listener);
 widget.init();
@@ -585,6 +589,7 @@ let EventType;
     EventType1["Onoperationpending"] = 'onoperationpending';
     EventType1["Onunsupported"] = 'onunsupported';
     EventType1["Onforcecontinue"] = 'onforcecontinue';
+    EventType1["Any"] = '*';
 })(EventType || (EventType = {}));
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
@@ -671,9 +676,9 @@ class NearPay {
         if (window) window.addEventListener('message', (event)=>{
             if (_helpers.isNearpayEvent(event)) {
                 const callbacks = this._listeners[event.data.data.type];
-                if (callbacks) Array.from(callbacks).forEach((cb)=>cb(event.data.data.payload)
+                if (callbacks) Array.from(callbacks).forEach((cb)=>cb(event.data.data)
                 );
-                if (this._listeners['*']) Array.from(this._listeners['*']).forEach((cb)=>cb(event.data.data.payload)
+                if (this._listeners['*']) Array.from(this._listeners['*']).forEach((cb)=>cb(event.data.data)
                 );
             }
         });

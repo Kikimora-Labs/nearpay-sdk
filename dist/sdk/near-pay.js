@@ -41,10 +41,10 @@ class NearPay {
                 if ((0, helpers_1.isNearpayEvent)(event)) {
                     const callbacks = this._listeners[event.data.data.type];
                     if (callbacks) {
-                        Array.from(callbacks).forEach((cb) => cb(event.data.data.payload));
+                        Array.from(callbacks).forEach((cb) => cb(event.data.data));
                     }
                     if (this._listeners['*']) {
-                        Array.from(this._listeners['*']).forEach((cb) => cb(event.data.data.payload));
+                        Array.from(this._listeners['*']).forEach((cb) => cb(event.data.data));
                     }
                 }
             });
