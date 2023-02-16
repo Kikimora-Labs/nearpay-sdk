@@ -1,27 +1,39 @@
-import {EventType, NearPay, OrderPayload, ResizePayload} from '../index';
+import {
+  EventType,
+  NearPay,
+  OnLoadedEvent,
+  OnOperationCreated,
+  WidgetEvent,
+} from '../index';
 
 const container = document.querySelector(
   '#nearpay-widget-container',
 ) as HTMLElement;
 
-const params = {};
 const widget = new NearPay({
   mountElement: container,
   environment: 'stage',
 });
 
-const listener = (data: ResizePayload) => {
-  console.log('onload', data);
+const listener = (event: OnLoadedEvent) => {
+  console.log('onload', event);
 };
-const onOrderCreated = (data: OrderPayload) => {
-  console.log('order created', data);
+const onOrderCreated = (event: OnOperationCreated) => {
+  console.log('order created', event);
 };
 
 widget.addListener(EventType.Onload, listener);
 widget.addListener(EventType.Onoperationcreated, onOrderCreated);
-widget.addListener('*', (data) => {
-  console.log('all events', data);
+
+// You can use inline listener for automatic type inference
+widget.addListener(EventType.Onoperationsuccess, (event) => {
+  console.log('order success', event.payload.orderId);
 });
+
+const allEventsListener = (data: WidgetEvent) => {
+  console.log('all events', data);
+};
+widget.addListener(EventType.Any, allEventsListener);
 // unsubsribe
 // widget.removeEventListener('onload', listener);
 widget.init();

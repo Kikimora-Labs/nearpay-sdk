@@ -11,6 +11,7 @@ export enum EventType {
   Onoperationpending = 'onoperationpending',
   Onunsupported = 'onunsupported',
   Onforcecontinue = 'onforcecontinue',
+  Any = '*',
 }
 
 export interface WidgetMessageEventData {
@@ -153,5 +154,5 @@ export type NearpayEventMap = {
   [EventType.Onoperationpending]: OnOperationPending;
   [EventType.Onunsupported]: OnUnsupported;
   [EventType.Onforcecontinue]: OnForceContinue;
-  '*': WidgetEvent;
+  [EventType.Any]: WidgetEvent;
 };

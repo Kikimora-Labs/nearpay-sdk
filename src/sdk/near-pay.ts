@@ -2,7 +2,12 @@ import {getWidgetUrl, isNearpayEvent} from '../helpers';
 import {SignedWidgetParams} from '../interfaces/widget-parameters';
 import {EnvironmentMode} from '../interfaces/environment';
 import {getWindow} from '../helpers/global';
-import {EventType, NearpayEventMap, WidgetMessageEventData} from '..';
+import {
+  EventType,
+  NearpayEventMap,
+  WidgetEvent,
+  WidgetMessageEventData,
+} from '..';
 
 const ERROR_NO_MOUNT_ELEMENT = new Error('[NearPay]: provide mount element');
 
@@ -47,7 +52,7 @@ stylesheet.innerHTML = stylesheetContent;
 export class NearPay {
   public iframe: HTMLIFrameElement | null = null;
   public mountElement: HTMLElement;
-  private _listeners: {[key: string]: Set<(data: any) => void>};
+  private _listeners: {[key: string]: Set<(event: WidgetEvent & any) => void>};
   private _params: SignedWidgetParams | null;
   private _env: EnvironmentMode;
   private _initialized = false;
@@ -79,14 +84,12 @@ export class NearPay {
           if (isNearpayEvent(event)) {
             const callbacks = this._listeners[event.data.data.type];
             if (callbacks) {
-              Array.from(callbacks).forEach((cb) =>
-                cb(event.data.data.payload),
-              );
+              Array.from(callbacks).forEach((cb) => cb(event.data.data));
             }
 
             if (this._listeners['*']) {
               Array.from(this._listeners['*']).forEach((cb) =>
-                cb(event.data.data.payload),
+                cb(event.data.data),
               );
             }
           }
@@ -123,7 +126,7 @@ export class NearPay {
 
   public addListener<K extends keyof NearpayEventMap>(
     type: K,
-    listener: (data: NearpayEventMap[K]['payload']) => void,
+    listener: (event: NearpayEventMap[K]) => void,
   ): void {
     if (!this._listeners[type]) {
       this._listeners[type] = new Set();
@@ -134,7 +137,7 @@ export class NearPay {
 
   public removeListener<K extends EventType>(
     type: K,
-    listener: (data: NearpayEventMap[K]['payload']) => void,
+    listener: (event: NearpayEventMap[K]) => void,
   ): void {
     if (!this._listeners[type]) {
       return;
