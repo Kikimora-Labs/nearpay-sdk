@@ -54,11 +54,11 @@ const widget = new NearPay({
 });
 
 // Subscribing to events
-widget.addListener(EventType.Onload, (data: ResizePayload) => {
+widget.addListener(EventType.Onload, (data: OnLoadedEvent) => {
   // react to changes!
 });
 // You can also subscribe to all events using wildcard
-widget.addListener('*', (data: WidgetEvent) => {
+widget.addListener(EventType.Any, (data: WidgetEvent) => {
   // react to changes!
 });
 
