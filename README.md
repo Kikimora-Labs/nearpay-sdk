@@ -57,6 +57,10 @@ const widget = new NearPay({
 widget.addListener(EventType.Onload, (data: ResizePayload) => {
   // react to changes!
 });
+// You can also subscribe to all events using wildcard
+widget.addListener('*', (data: WidgetEvent) => {
+  // react to changes!
+});
 
 // render iframe
 widget.init();

@@ -83,6 +83,12 @@ export class NearPay {
                 cb(event.data.data.payload),
               );
             }
+
+            if (this._listeners['*']) {
+              Array.from(this._listeners['*']).forEach((cb) =>
+                cb(event.data.data.payload),
+              );
+            }
           }
         },
       );

@@ -4,9 +4,10 @@ const container = document.querySelector(
   '#nearpay-widget-container',
 ) as HTMLElement;
 
+const params = {};
 const widget = new NearPay({
   mountElement: container,
-  environment: 'development',
+  environment: 'stage',
 });
 
 const listener = (data: ResizePayload) => {
@@ -18,7 +19,9 @@ const onOrderCreated = (data: OrderPayload) => {
 
 widget.addListener(EventType.Onload, listener);
 widget.addListener(EventType.Onoperationcreated, onOrderCreated);
-
+widget.addListener('*', (data) => {
+  console.log('all events', data);
+});
 // unsubsribe
 // widget.removeEventListener('onload', listener);
 widget.init();
