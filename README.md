@@ -124,4 +124,4 @@ import {
 
 ## 📖 Integration Docs
 
-Look for more info about integrating NearPay into your products [here](http://docs.nearpay.co)
+Look for more info about integrating NearPay into your products [here](http://docs.munzen.io)

@@ -51,11 +51,11 @@ const makeParamsQuery = ({
 const getOrigin = (environment: EnvironmentMode) => {
   switch (environment) {
     case 'production':
-      return 'https://widget.nearpay.co';
+      return 'https://widget.munzen.io';
     case 'development':
-      return 'https://dev-widget.nearpay.co';
+      return 'https://dev-widget.munzen.io';
     case 'stage':
-      return 'https://stage-widget.nearpay.co';
+      return 'https://stage-widget.munzen.io';
     default:
       throw new Error('Environment mode is not defined');
   }
