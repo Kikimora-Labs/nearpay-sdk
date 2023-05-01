@@ -1,6 +1,6 @@
 {
   "name": "@nearpay/nearpay-sdk",
-  "version": "3.1.1",
+  "version": "3.1.2-alpha.0",
   "description": "SDK to conveniently communicate with NearPay widget",
   "main": "dist/index.js",
   "devDependencies": {
@@ -17,7 +17,12 @@
     "type": "git",
     "url": "git+https://github.com/Kikimora-Labs/nearpay-sdk.git"
   },
-  "keywords": ["nearpay", "sdk", "typescript", "iframe"],
+  "keywords": [
+    "nearpay",
+    "sdk",
+    "typescript",
+    "iframe"
+  ],
   "author": "goshancode@gmail.com",
   "license": "ISC",
   "bugs": {
