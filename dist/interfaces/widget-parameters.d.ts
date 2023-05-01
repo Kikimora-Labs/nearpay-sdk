@@ -19,6 +19,7 @@ export interface WidgetParams {
     toCurrency?: string;
     toAmount?: string;
     toWallet?: string;
+    email?: string;
     merchantOrderId?: string;
     apiKey?: string;
     contractCall?: ContractCall;

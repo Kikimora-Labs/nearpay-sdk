@@ -16,12 +16,13 @@ const getContractCallEncoded = (contractCall) => {
     }
     return encodeURIComponent(JSON.stringify(contractCall));
 };
-const makeParamsQuery = ({ apiKey, toWallet, toCurrency, toAmount, signature, merchantOrderId, contractCall, }) => {
+const makeParamsQuery = ({ apiKey, toWallet, toCurrency, toAmount, signature, merchantOrderId, contractCall, email, }) => {
     const params = new URLSearchParams(removeUndefined({
         toWallet,
         toCurrency,
         toAmount,
         merchantOrderId,
+        email,
         apiKey,
         signature,
         contractCall: getContractCallEncoded(contractCall),
