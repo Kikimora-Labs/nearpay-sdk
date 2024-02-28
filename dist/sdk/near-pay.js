@@ -55,6 +55,7 @@ class NearPay {
         iframe.classList.add(this._iframeClass);
         iframe.id = this._iframeId;
         iframe.src = (0, helpers_1.getWidgetUrl)(this._env, this._params || undefined);
+        iframe.allow = "camera; microphone; geolocation";
         return iframe;
     }
     init() {

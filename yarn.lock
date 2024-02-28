@@ -145,9 +145,9 @@
     "nullthrows" "^1.1.1"
     "semver" "^5.7.1"
 
-"@parcel/css-darwin-arm64@1.8.1":
-  "integrity" "sha512-PbpIlqLMAhWZlimKCdNP/ZfGNJUlEWgNeTcO2LDjPIK5JK6oTAJHfP/PPzjLS8mu+JIznZ//9MnVOUi1xcjXMA=="
-  "resolved" "https://registry.npmjs.org/@parcel/css-darwin-arm64/-/css-darwin-arm64-1.8.1.tgz"
+"@parcel/css-darwin-x64@1.8.1":
+  "integrity" "sha512-R4FrwXQGAgW3/YRCSRCBNcV6mz+OKqYuyrVnZBmKTLDuTGhZHCF12qLL7SV5jYsKXBDauYAXDv/SOFIwlikVXg=="
+  "resolved" "https://registry.npmjs.org/@parcel/css-darwin-x64/-/css-darwin-x64-1.8.1.tgz"
   "version" "1.8.1"
 
 "@parcel/css@^1.8.1":
@@ -978,9 +978,9 @@
   "resolved" "https://registry.npmjs.org/mdn-data/-/mdn-data-2.0.14.tgz"
   "version" "2.0.14"
 
-"msgpackr-extract-darwin-arm64@1.1.0":
-  "integrity" "sha512-s1kHoT12tS2cCQOv+Wl3I+/cYNJXBPtwQqGA+dPYoXmchhXiE0Nso+BIfvQ5PxbmAyjj54Q5o7PnLTqVquNfZA=="
-  "resolved" "https://registry.npmjs.org/msgpackr-extract-darwin-arm64/-/msgpackr-extract-darwin-arm64-1.1.0.tgz"
+"msgpackr-extract-darwin-x64@1.1.0":
+  "integrity" "sha512-yx/H/i12IKg4eWGu/eKdKzJD4jaYvvujQSaVmeOMCesbSQnWo5X6YR9TFjoiNoU9Aexk1KufzL9gW+1DozG1yw=="
+  "resolved" "https://registry.npmjs.org/msgpackr-extract-darwin-x64/-/msgpackr-extract-darwin-x64-1.1.0.tgz"
   "version" "1.1.0"
 
 "msgpackr-extract@^1.1.4":
