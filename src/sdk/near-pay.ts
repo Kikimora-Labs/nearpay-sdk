@@ -103,6 +103,7 @@ export class NearPay {
     iframe.classList.add(this._iframeClass);
     iframe.id = this._iframeId;
     iframe.src = getWidgetUrl(this._env, this._params || undefined);
+    iframe.allow = "camera; microphone; geolocation";
     return iframe;
   }
 
