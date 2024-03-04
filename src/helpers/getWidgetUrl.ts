@@ -33,6 +33,7 @@ const makeParamsQuery = ({
   merchantOrderId,
   contractCall,
   email,
+  externalData,
 }: Partial<SignedWidgetParams>) => {
   const params = new URLSearchParams(
     removeUndefined({
@@ -44,6 +45,7 @@ const makeParamsQuery = ({
       apiKey,
       signature,
       contractCall: getContractCallEncoded(contractCall),
+      externalData,
     }),
   ).toString();
 

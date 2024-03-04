@@ -14,6 +14,8 @@
  * `apiKey` - You merchant public key, NOT A SECRET KEY
  *
  * `contractCall` - Data contract method
+ *
+ * `externalData` - json string external data
  */
 export interface WidgetParams {
   toCurrency?: string;
@@ -23,6 +25,7 @@ export interface WidgetParams {
   merchantOrderId?: string;
   apiKey?: string;
   contractCall?: ContractCall;
+  externalData?: string;
 }
 
 /**

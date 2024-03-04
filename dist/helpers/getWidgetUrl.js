@@ -16,7 +16,7 @@ const getContractCallEncoded = (contractCall) => {
     }
     return encodeURIComponent(JSON.stringify(contractCall));
 };
-const makeParamsQuery = ({ apiKey, toWallet, toCurrency, toAmount, signature, merchantOrderId, contractCall, email, }) => {
+const makeParamsQuery = ({ apiKey, toWallet, toCurrency, toAmount, signature, merchantOrderId, contractCall, email, externalData, }) => {
     const params = new URLSearchParams(removeUndefined({
         toWallet,
         toCurrency,
@@ -26,6 +26,7 @@ const makeParamsQuery = ({ apiKey, toWallet, toCurrency, toAmount, signature, me
         apiKey,
         signature,
         contractCall: getContractCallEncoded(contractCall),
+        externalData,
     })).toString();
     return `${params}`;
 };
