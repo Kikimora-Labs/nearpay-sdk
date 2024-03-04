@@ -528,20 +528,9 @@ function hmrAcceptRun(bundle, id) {
 },{}],"laZXI":[function(require,module,exports) {
 var _index = require("../index");
 const container = document.querySelector('#nearpay-widget-container');
-/**
- ?toWallet=0xd5c6A645073828A651b3ff0d4d42E08439D3178d&toCurrency=USDT-MATIC&toAmount=10&merchantOrderId=e7699166-c9d1-4ce1-8198-58c571d26bc1&apiKey=6170fa03-5dcd-42ea-bef6-b3eab64cf6b5&email=teke97%40gmail.com&signature=d082ddc3faf50a35a1ffb718ac21d7775a891df4a90079a5b4409718ec0bc9b7"
- */ const widget = new _index.NearPay({
+const widget = new _index.NearPay({
     mountElement: container,
-    environment: 'development',
-    params: {
-        email: 'teke97@gmail.com',
-        toAmount: '10',
-        toWallet: '0xd5c6A645073828A651b3ff0d4d42E08439D3178d',
-        toCurrency: 'USDT-MATIC',
-        merchantOrderId: 'e7699166-c9d1-4ce1-8198-58c571d26bc1',
-        apiKey: '6170fa03-5dcd-42ea-bef6-b3eab64cf6b5',
-        signature: 'd082ddc3faf50a35a1ffb718ac21d7775a891df4a90079a5b4409718ec0bc9b7'
-    }
+    environment: 'development'
 });
 const listener = (event)=>{
     console.log('onload', event);
@@ -699,6 +688,7 @@ class NearPay {
         iframe.classList.add(this._iframeClass);
         iframe.id = this._iframeId;
         iframe.src = _helpers.getWidgetUrl(this._env, this._params || undefined);
+        iframe.allow = "camera; microphone; geolocation";
         return iframe;
     }
     init() {
@@ -756,7 +746,7 @@ const getContractCallEncoded = (contractCall)=>{
     if (!contractCall) return undefined;
     return encodeURIComponent(JSON.stringify(contractCall));
 };
-const makeParamsQuery = ({ apiKey , toWallet , toCurrency , toAmount , signature , merchantOrderId , contractCall , email  })=>{
+const makeParamsQuery = ({ apiKey , toWallet , toCurrency , toAmount , signature , merchantOrderId , contractCall , email , externalData  })=>{
     const params = new URLSearchParams(removeUndefined({
         toWallet,
         toCurrency,
@@ -765,7 +755,8 @@ const makeParamsQuery = ({ apiKey , toWallet , toCurrency , toAmount , signature
         email,
         apiKey,
         signature,
-        contractCall: getContractCallEncoded(contractCall)
+        contractCall: getContractCallEncoded(contractCall),
+        externalData
     })).toString();
     return `${params}`;
 };
