@@ -1,3 +1,5 @@
+import {ContractCall} from './interfaces/widget-parameters';
+
 export enum EventType {
   Onload = 'onload',
   Onerror = 'onerror',
@@ -40,6 +42,16 @@ export interface ErrorPayload {
 export interface OrderPayload {
   orderId?: string;
   merchantOrderId?: string;
+}
+
+export interface MerchantParamsPayload {
+  toCurrency?: string;
+  toAmount?: string;
+  toWallet?: string;
+  email?: string;
+  merchantOrderId?: string;
+  contractCall?: ContractCall;
+  externalData?: string;
 }
 
 export interface UnsupportedPayload {
@@ -145,7 +157,8 @@ export interface OnForceContinue extends WidgetEvent<UnsupportedPayload> {
 /**
  *  onmerchantorderidexists - when an error is triggered that the merchantOrderId has already been used
  */
-export interface OnMerchantOrderIdExists extends WidgetEvent<OrderPayload> {
+export interface OnMerchantOrderIdExists
+  extends WidgetEvent<MerchantParamsPayload> {
   type: EventType.Onmerchantorderidexists;
 }
 

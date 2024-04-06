@@ -30,6 +30,10 @@ widget.addListener(EventType.Onoperationsuccess, (event) => {
   console.log('order success', event.payload.orderId);
 });
 
+widget.addListener(EventType.Onmerchantorderidexists, (event) => {
+  console.log('merchantOrderId exists', event.payload);
+});
+
 const allEventsListener = (data: WidgetEvent) => {
   console.log('all events', data);
 };

@@ -544,6 +544,9 @@ widget.addListener(_index.EventType.Onoperationcreated, onOrderCreated);
 widget.addListener(_index.EventType.Onoperationsuccess, (event)=>{
     console.log('order success', event.payload.orderId);
 });
+widget.addListener(_index.EventType.Onmerchantorderidexists, (event)=>{
+    console.log('merchantOrderId exists', event.payload);
+});
 const allEventsListener = (data)=>{
     console.log('all events', data);
 };
