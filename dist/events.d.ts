@@ -11,6 +11,7 @@ export declare enum EventType {
     Onoperationpending = "onoperationpending",
     Onunsupported = "onunsupported",
     Onforcecontinue = "onforcecontinue",
+    Onmerchantorderidexists = "onmerchantorderidexists",
     Any = "*"
 }
 export interface WidgetMessageEventData {
@@ -118,6 +119,12 @@ export interface OnUnsupported extends WidgetEvent<UnsupportedPayload> {
 export interface OnForceContinue extends WidgetEvent<UnsupportedPayload> {
     type: EventType.Onforcecontinue;
 }
+/**
+ *  onmerchantorderidexists - when an error is triggered that the merchantOrderId has already been used
+ */
+export interface OnMerchantOrderIdExists extends WidgetEvent<OrderPayload> {
+    type: EventType.Onmerchantorderidexists;
+}
 export declare type NearpayEventMap = {
     [EventType.Onload]: OnLoadedEvent;
     [EventType.Onerror]: OnErrorEvent;
@@ -131,5 +138,6 @@ export declare type NearpayEventMap = {
     [EventType.Onoperationpending]: OnOperationPending;
     [EventType.Onunsupported]: OnUnsupported;
     [EventType.Onforcecontinue]: OnForceContinue;
+    [EventType.Onmerchantorderidexists]: OnMerchantOrderIdExists;
     [EventType.Any]: WidgetEvent;
 };

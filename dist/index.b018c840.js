@@ -589,6 +589,7 @@ let EventType;
     EventType1["Onoperationpending"] = 'onoperationpending';
     EventType1["Onunsupported"] = 'onunsupported';
     EventType1["Onforcecontinue"] = 'onforcecontinue';
+    EventType1["Onmerchantorderidexists"] = 'onmerchantorderidexists';
     EventType1["Any"] = '*';
 })(EventType || (EventType = {}));
 
