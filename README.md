@@ -119,6 +119,7 @@ import {
   OnOperationFail,
   OnUnsupported,
   OnForceContinue,
+  OnMerchantOrderIdExists,
 } from '@nearpay/nearpay-sdk';
 ```
 
