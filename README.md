@@ -34,6 +34,8 @@ import {
 
 // more info about params available at SignedWidgetParams definition
 const params: SignedWidgetParams = {
+  fromCurrency: '',
+  fromAmount: '',
   toAmount: '',
   toCurrency: '',
   toWallet: '',

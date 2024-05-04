@@ -28,6 +28,8 @@ const makeParamsQuery = ({
   apiKey,
   toWallet,
   toCurrency,
+  fromCurrency,
+  fromAmount,
   toAmount,
   signature,
   merchantOrderId,
@@ -37,6 +39,8 @@ const makeParamsQuery = ({
 }: Partial<SignedWidgetParams>) => {
   const params = new URLSearchParams(
     removeUndefined({
+      fromCurrency,
+      fromAmount,
       toWallet,
       toCurrency,
       toAmount,

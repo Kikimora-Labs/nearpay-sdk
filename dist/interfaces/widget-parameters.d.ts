@@ -18,6 +18,8 @@
  * `externalData` - json string external data
  */
 export interface WidgetParams {
+    fromCurrency?: string;
+    fromAmount?: string;
     toCurrency?: string;
     toAmount?: string;
     toWallet?: string;

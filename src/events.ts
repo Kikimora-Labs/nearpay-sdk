@@ -45,6 +45,8 @@ export interface OrderPayload {
 }
 
 export interface MerchantParamsPayload {
+  fromCurrency?: string;
+  fromAmount?: string;
   toCurrency?: string;
   toAmount?: string;
   toWallet?: string;
