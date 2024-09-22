@@ -14,6 +14,7 @@ export enum EventType {
   Onunsupported = 'onunsupported',
   Onforcecontinue = 'onforcecontinue',
   Onmerchantorderidexists = 'onmerchantorderidexists',
+  Onpaymentpending = "onpaymentpending",
   Any = '*',
 }
 
@@ -40,6 +41,13 @@ export interface ErrorPayload {
 
 // TODO: think what else should be there
 export interface OrderPayload {
+  orderId?: string;
+  merchantOrderId?: string;
+}
+
+export interface OnPaymentPendingPayload {
+  /** Deposit address */
+  toWallet?: string
   orderId?: string;
   merchantOrderId?: string;
 }
@@ -164,6 +172,13 @@ export interface OnMerchantOrderIdExists
   type: EventType.Onmerchantorderidexists;
 }
 
+/**
+ *  onpaymentpending - For off-ramp. The user entered the card and clicked "Confirm & Proceed" and received the deposit address
+ */
+export interface OnPaymentPending extends WidgetEvent<OnPaymentPendingPayload> {
+  type: EventType.Onpaymentpending;
+}
+
 export type NearpayEventMap = {
   [EventType.Onload]: OnLoadedEvent;
   [EventType.Onerror]: OnErrorEvent;
@@ -178,5 +193,6 @@ export type NearpayEventMap = {
   [EventType.Onunsupported]: OnUnsupported;
   [EventType.Onforcecontinue]: OnForceContinue;
   [EventType.Onmerchantorderidexists]: OnMerchantOrderIdExists;
+  [EventType.Onpaymentpending]: OnPaymentPending;
   [EventType.Any]: WidgetEvent;
 };

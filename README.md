@@ -122,8 +122,29 @@ import {
   OnUnsupported,
   OnForceContinue,
   OnMerchantOrderIdExists,
+  OnPaymentPending
 } from '@nearpay/nearpay-sdk';
 ```
+
+**off-ramp events:** 
+| Event | Description |
+|----------|----------|
+| `onoperationcreated`    | The user had been authenticated and order had been created   |
+| `onpaymentpending`    | The user entered the card and clicked "Confirm & Proceed" and received the deposit address   |
+| `onmerchantorderidexists`    | When an error is triggered that the merchantOrderId has already been used   |
+
+**on-ramp events:** 
+| Event                     | Description                                                                 |
+|---------------------------|-----------------------------------------------------------------------------|
+| `onoperationcreated`      | The user had been authenticated and order had been created                  |
+| `onpaymentsent`           | Sending payment data - the user clicked on Pay, does not contain data       |
+| `onoperationsuccess`      | The order completed, payment has been received                              |
+| `onoperationfail`         | The order declined, due to service failure, fraud control, or other         |
+| `onoperationpending`      | The payment is pending to be confirmed                                      |
+| `onunsupported`           | Detected user country is unsupported                                        |
+| `onforcecontinue`         | The user clicks "Force continue" button and default country (US) is applied |
+| `onmerchantorderidexists` | When an error is triggered that the merchantOrderId has already been used   |
+
 
 ## 📖 Integration Docs
 

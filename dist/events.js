@@ -16,5 +16,6 @@ var EventType;
     EventType["Onunsupported"] = "onunsupported";
     EventType["Onforcecontinue"] = "onforcecontinue";
     EventType["Onmerchantorderidexists"] = "onmerchantorderidexists";
+    EventType["Onpaymentpending"] = "onpaymentpending";
     EventType["Any"] = "*";
 })(EventType = exports.EventType || (exports.EventType = {}));
